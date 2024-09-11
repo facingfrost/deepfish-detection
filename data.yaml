@@ -1,0 +1,12 @@
+names:
+- Fish
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: deepfish-fmyzf
+  url: https://universe.roboflow.com/brrrrrrr/deepfish-fmyzf/dataset/2
+  version: 2
+  workspace: brrrrrrr
+test: images/test
+train: images/train
+val: images/val
