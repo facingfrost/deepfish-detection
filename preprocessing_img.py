@@ -19,7 +19,6 @@ def img_adapt(input_path):
 def enhance_img(input_path, output_path, method = 'all'):
     ''' enhances the img from the input folder
         and saves it in an output folder  
-        check = all(value == 'independent' for value in dict_facilities.values())
         method: contrast, histogram, adaptative, all (3 combined)'''
     image = Image.open(input_path)
     regex = re.search(r'(?<!\/)\/(?!.*\/)', input_path)
