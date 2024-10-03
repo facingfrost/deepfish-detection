@@ -5,3 +5,4 @@ runs/
 .DS_Store
 videos/
 datasets/images_preprocessed/
+yolov8n.pt
