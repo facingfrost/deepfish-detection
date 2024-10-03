@@ -19,9 +19,15 @@ def img_adapt(input_path):
 
 
 def enhance_img(input_path, output_path, method='all'):
-    ''' enhances the img from the input folder
-        and saves it in an output folder
-        method: contrast, histogram, adaptative, all (3 combined)'''
+    '''
+    enhances the img from the input folder
+    and saves it in an output folder
+    method:
+        - contrast
+        - histogram
+        - adaptative
+        - all (runs the 3 methods, one by one)
+    '''
     image = Image.open(input_path)
     regex = re.search(r'(?<!\/)\/(?!.*\/)', input_path)
     file_name = regex.start()
@@ -36,17 +42,17 @@ def enhance_img(input_path, output_path, method='all'):
     elif method == 'adaptative':
         pass
     elif method == 'all':
-        img_with_contrast = img_contrast(image)
-        img_equalized = img_histogram(img_with_contrast)
-        img_adaptative = img_adapt(img_equalized)
-        img_adaptative.save(output + '_all.jpg')
+        enhance_img(input_path, output_path, method='contrast')
+        enhance_img(input_path, output_path, method='histogram')
+        enhance_img(input_path, output_path, method='adaptative')
 
 
 def main():
     input_path = './datasets/images/train/'
     output_path = './datasets/images_preprocessed/'
+    os.mkdir(output_path)
     for image in os.listdir(input_path):
-        enhance_img(input_path+image, output_path, 'all')
+        enhance_img(input_path+image, output_path, method='all')
 
 
 if __name__ == "__main__":
