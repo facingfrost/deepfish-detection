@@ -3,3 +3,5 @@ runs/
 *.swp
 *.cache
 .DS_Store
+videos/
+datasets/images_preprocessed/
