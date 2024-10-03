@@ -1,6 +1,5 @@
 from PIL import ImageEnhance, Image, ImageOps
 import os
-import re
 
 
 def img_contrast(image):
@@ -28,31 +27,35 @@ def enhance_img(input_path, output_path, method='all'):
         - adaptative
         - all (runs the 3 methods, one by one)
     '''
-    image = Image.open(input_path)
-    regex = re.search(r'(?<!\/)\/(?!.*\/)', input_path)
-    file_name = regex.start()
-    output = output_path + input_path[file_name:][:-4]
-
-    if method == 'contrast':
-        img_with_contrast = img_contrast(image)
-        img_with_contrast.save(output + '_contrast.jpg')
-    elif method == 'histogram':
-        img_equalized = img_histogram(image)
-        img_equalized.save(output + '_histogram.jpg')
-    elif method == 'adaptative':
-        pass
-    elif method == 'all':
+    if method == 'all':
         enhance_img(input_path, output_path, method='contrast')
         enhance_img(input_path, output_path, method='histogram')
         enhance_img(input_path, output_path, method='adaptative')
+    else:
+        image = Image.open(input_path)
+        input_bpath, input_fname = os.path.split(input_path)
+        output = os.path.join(output_path, method)
+        output = os.path.join(output, input_fname[:-4])
+
+        if method == 'contrast':
+            img_with_contrast = img_contrast(image)
+            img_with_contrast.save(output + '_contrast.jpg')
+        elif method == 'histogram':
+            img_equalized = img_histogram(image)
+            img_equalized.save(output + '_histogram.jpg')
+        elif method == 'adaptative':
+            pass
 
 
 def main():
-    input_path = './datasets/images/train/'
-    output_path = './datasets/images_preprocessed/'
-    os.mkdir(output_path)
+    input_path = './datasets/images/train'
+    output_path = './datasets/images_preprocessed'
+
+    for method in ['contrast', 'histogram', 'adaptative']:
+        os.makedirs(os.path.join(output_path, method), exist_ok=True)
+
     for image in os.listdir(input_path):
-        enhance_img(input_path+image, output_path, method='all')
+        enhance_img(os.path.join(input_path, image), output_path, method='all')
 
 
 if __name__ == "__main__":
