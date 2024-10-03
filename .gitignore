@@ -6,3 +6,4 @@ runs/
 videos/
 datasets/images_preprocessed/
 yolov8n.pt
+output_video/
