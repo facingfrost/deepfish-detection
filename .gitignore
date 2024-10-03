@@ -7,3 +7,5 @@ videos/
 datasets/images_preprocessed/
 yolov8n.pt
 output_video/
+*_contrast.txt
+*_histogram.txt
