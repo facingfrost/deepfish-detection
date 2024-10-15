@@ -9,3 +9,4 @@ yolov8n.pt
 output_video/
 *_contrast.txt
 *_histogram.txt
+datasets/images/train/
