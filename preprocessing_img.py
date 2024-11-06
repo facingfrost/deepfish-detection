@@ -1,4 +1,5 @@
 from PIL import ImageEnhance, Image, ImageOps
+import skimage as ski
 import os
 
 
@@ -13,8 +14,12 @@ def img_histogram(image):
 
 
 def img_adapt(input_path):
-    '''missing Adapative Equalization'''
-    pass
+    image = ski.io.imread(input_path)
+    eq_img = ski.exposure.equalize_adapthist(image,
+                                             kernel_size=None,
+                                             clip_limit=0.01,
+                                             nbins=256)
+    return ski.img_as_ubyte(eq_img)
 
 
 def enhance_img(input_path, output_path, method='all'):
@@ -24,13 +29,13 @@ def enhance_img(input_path, output_path, method='all'):
     method:
         - contrast
         - histogram
-        - adaptative
+        - adaptive
         - all (runs the 3 methods, one by one)
     '''
     if method == 'all':
         enhance_img(input_path, output_path, method='contrast')
         enhance_img(input_path, output_path, method='histogram')
-        enhance_img(input_path, output_path, method='adaptative')
+        enhance_img(input_path, output_path, method='adaptive')
     else:
         image = Image.open(input_path)
         input_bpath, input_fname = os.path.split(input_path)
@@ -43,15 +48,16 @@ def enhance_img(input_path, output_path, method='all'):
         elif method == 'histogram':
             img_equalized = img_histogram(image)
             img_equalized.save(output + '_histogram.jpg')
-        elif method == 'adaptative':
-            pass
+        elif method == 'adaptive':
+            eq_img = img_adapt(input_path)
+            ski.io.imsave(output + '_adaptive.jpg', eq_img)
 
 
 def main():
     input_path = './datasets/images/train'
     output_path = './datasets/images_preprocessed'
 
-    for method in ['contrast', 'histogram', 'adaptative']:
+    for method in ['contrast', 'histogram', 'adaptive']:
         os.makedirs(os.path.join(output_path, method), exist_ok=True)
 
     for image in os.listdir(input_path):
