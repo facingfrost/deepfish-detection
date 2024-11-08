@@ -1,3 +1,12 @@
+# Fish Detection and Counting using YOLOv8 models and color correction techniques for NGOs
+
+- Dionisius Mayr 2218364
+- Hetvi Chaniyara 1840932
+- Linhan Wang 2215322
+- Min Zhang 2215187
+- Tejada Gian 2215284
+- Ziyong Zhang 1921770
+
 # Environment and reproducibility
 
 All the experiments here were executed under Python 3.11.2 and using the package versions specified in `requirements.txt` and `seed == 0`.
@@ -28,24 +37,8 @@ Basically the project follows a folder hierarchy that is compatbile with the one
 - `output_video` contains a sample of the model being applied in a test video;
 - `requirements.txt` contains the exact package versions used to run these experiments;
 - `runs` contains the result of each model, including the `weights`, performance metrics, execution sample and more information. The weights can be used directly, without needing to train the models again.
-<!--
-%% # Dataset
-%% The dataset I uploaded is already resized and can be upload to github for immediate training.
-%% For the original data for better training, you can download it here:
 
-%% [Deepfish.](https://alzayats.github.io/DeepFish/)
+# Execution example
 
-%% [Bounding box in json format.](https://drive.google.com/drive/folders/16SDv_V7RDjTKDk8uodL2ubyubYTMdd5q) FISH.tar.gz is deepfish.
+![Execution example](output_video/good_simple_example.gif)
 
-%% [Bouding box in COCO format.](https://www.kaggle.com/datasets/vencerlanz09/deep-fish-object-detection)
-
-%% [The source of this github data.](https://universe.roboflow.com/brrrrrrr/deepfish-fmyzf) Select yolo8 format to download.
-
-%% Note that if you want to download the images from source link, you'll need to re-organize the folders following [ultralytics documentation](https://docs.ultralytics.com/datasets/detect/#ultralytics-yolo-format). If the images doesn't match the required format, yolo model may not be able to recognize train and test images.
-
-%% # Model training and testing
-
-%% - `preprocessing_img.py` contains a script to generate the data augmented images;
-%% - `scripts.ipynb` contains the first version of the model;
-%% - `deep_fish_v2.ipynb` contains the current version of the model being used, as well as the video generation functionality;
--->
