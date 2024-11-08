@@ -28,7 +28,7 @@ Basically the project follows a folder hierarchy that is compatbile with the one
 - `output_video` contains a sample of the model being applied in a test video;
 - `requirements.txt` contains the exact package versions used to run these experiments;
 - `runs` contains the result of each model, including the `weights`, performance metrics, execution sample and more information. The weights can be used directly, without needing to train the models again.
-
+<!--
 %% # Dataset
 %% The dataset I uploaded is already resized and can be upload to github for immediate training.
 %% For the original data for better training, you can download it here:
@@ -48,3 +48,4 @@ Basically the project follows a folder hierarchy that is compatbile with the one
 %% - `preprocessing_img.py` contains a script to generate the data augmented images;
 %% - `scripts.ipynb` contains the first version of the model;
 %% - `deep_fish_v2.ipynb` contains the current version of the model being used, as well as the video generation functionality;
+-->
